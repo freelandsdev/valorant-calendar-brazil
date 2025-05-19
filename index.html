@@ -19,20 +19,39 @@
       background-color: #0f1923;
       font-family: 'Rajdhani', sans-serif;
       color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      gap: 3rem;
+      padding: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .principal {
       text-align: center;
+      max-width: 600px;
     }
-    header {
-      padding: 4rem 1rem 2rem;
-    }
+
     h1 {
       font-size: 2.5rem;
       color: #ff4655;
       margin-bottom: 1rem;
     }
+
     p {
       font-size: 1.1rem;
       color: #ccc;
     }
+
     .botao-agenda {
       background-color: #ff4655;
       color: #fff;
@@ -46,51 +65,98 @@
       text-decoration: none;
       display: inline-block;
     }
+
     .botao-agenda:hover {
       background-color: #e03b49;
     }
-    .afiliado {
-      background-color: #1f2733;
-      margin-top: 4rem;
-      padding: 2rem;
-    }
-    .afiliado h2 {
-      color: #ff4655;
-      font-size: 1.5rem;
-    }
-    .afiliado p {
-      color: #aaa;
+
+    .evento {
+      margin-top: 2rem;
       font-size: 1rem;
-      max-width: 600px;
-      margin: 1rem auto;
     }
-    .afiliado a {
+
+    .evento ul {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+      color: #aaa;
+    }
+
+    .mouse-card {
+      background-color: #1f2733;
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      width: 260px;
+    }
+
+    .mouse-card img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .mouse-card h2 {
+      font-size: 1.3rem;
       color: #ff4655;
-      text-decoration: underline;
+    }
+
+    .mouse-card ul {
+      padding: 0;
+      list-style: none;
+      font-size: 0.9rem;
+      color: #aaa;
+      text-align: left;
+      margin-top: 1rem;
+    }
+
+    .mouse-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      background-color: #ff4655;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .mouse-card a:hover {
+      background-color: #e03b49;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Champions Tour 2025: Masters Toronto</h1>
-    <p>Adicione os jogos ao seu Google Agenda e acompanhe tudo em tempo real.</p>
-    <a class="botao-agenda" href="https://calendar.google.com/calendar/u/0?cid=SEU_CALENDAR_ID_AQUI" target="_blank">
-      🗓 Adicionar ao Google Agenda
-    </a>
-    <section class="evento">
-    <h2>📍 Detalhes do Evento</h2>
-    <ul>
-      <li><strong>Datas:</strong> 7 a 22 de Junho de 2025</li>
-      <li><strong>Local:</strong> Encare Arena – Toronto, Canadá 🇨🇦</li>
-      <li><strong>Premiação:</strong> $1.000.000 USD</li>
-      <li><strong>Fase Atual:</strong> Swiss Stage</li>
-    </ul>
-</section>
-  </header>
+  <div class="container">
+    <div class="principal">
+      <h1>Champions Tour 2025: Masters Toronto</h1>
+      <p>Adicione os jogos ao seu Google Agenda e acompanhe tudo em tempo real.</p>
+      <a class="botao-agenda" href="https://calendar.google.com/calendar/u/0?cid=SEU_CALENDAR_ID_AQUI" target="_blank">
+        🗓 Adicionar ao Google Agenda
+      </a>
+      <section class="evento">
+        <h2>📍 Detalhes do Evento</h2>
+        <ul>
+          <li><strong>Datas:</strong> 7 a 22 de Junho de 2025</li>
+          <li><strong>Local:</strong> Encare Arena – Toronto, Canadá 🇨🇦</li>
+          <li><strong>Premiação:</strong> $1.000.000 USD</li>
+          <li><strong>Fase Atual:</strong> Swiss Stage</li>
+        </ul>
+      </section>
+    </div>
 
-  <section class="afiliado">
-    <h2>💥 Apoie este projeto</h2>
-    <p>Se você curte esse conteúdo, considere comprar com nosso <a href="https://www.amazon.com.br/?tag=SEU_ID_AFILIADO" target="_blank">link da Amazon</a>. Você não paga nada a mais e ajuda o projeto a continuar!</p>
-  </section>
+    <div class="mouse-card">
+      <img src="https://m.media-amazon.com/images/I/61j5rK+7WlL._AC_SL1500_.jpg" alt="Mouse Logitech G305">
+      <h2>Logitech G305 LIGHTSPEED</h2>
+      <ul>
+        <li>⚡ Sem fio ultra rápido (1ms)</li>
+        <li>🎯 Sensor HERO com 12.000 DPI</li>
+        <li>🔋 Bateria até 250h (pilha AA)</li>
+        <li>🖱️ 6 botões programáveis</li>
+        <li>🛠️ App Logitech G HUB</li>
+      </ul>
+      <a href="https://amzn.to/4moJsA3" target="_blank">Ver na Amazon</a>
+    </div>
+  </div>
 </body>
 </html>
