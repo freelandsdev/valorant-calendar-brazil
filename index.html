@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calendário Valorant - ACE Stage 2</title>
-  
+
   <script>
     if (window.location.hostname === "www.vlrcalendar.online") {
       window.location.href = "https://vlrcalendar.online";
     }
   </script>
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
   <style>
@@ -83,42 +83,54 @@
     }
 
     .mouse-card {
-      background-color: #1f2733;
+      background-image: url('https://i.ibb.co/BVvczV1x/Chat-GPT-Image-19-de-mai-de-2025-11-22-39.png');
+      background-size: cover;
+      background-position: center bottom;
+      background-repeat: no-repeat;
       padding: 1.5rem;
       border-radius: 8px;
-      text-align: center;
-      width: 260px;
+      width: 280px;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
     }
 
     .mouse-card img {
-      width: 100%;
-      border-radius: 6px;
-      margin-bottom: 1rem;
+      width: 150px;
+      margin-top: -50px;
+      margin-bottom: auto;
+      z-index: 2;
     }
 
     .mouse-card h2 {
       font-size: 1.3rem;
       color: #ff4655;
+      margin-bottom: 0.5rem;
     }
 
     .mouse-card ul {
       padding: 0;
       list-style: none;
       font-size: 0.9rem;
-      color: #aaa;
+      color: #eee;
       text-align: left;
-      margin-top: 1rem;
+      margin: 0.5rem 0 1rem;
+      width: 100%;
+      max-width: 240px;
+      z-index: 2;
     }
 
     .mouse-card a {
-      display: inline-block;
-      margin-top: 1rem;
       background-color: #ff4655;
       color: #fff;
       padding: 0.6rem 1.2rem;
       border-radius: 4px;
       text-decoration: none;
       font-weight: bold;
+      z-index: 2;
     }
 
     .mouse-card a:hover {
@@ -146,12 +158,11 @@
     </div>
 
     <div class="mouse-card">
-      <img src="https://m.media-amazon.com/images/I/61j5rK+7WlL._AC_SL1500_.jpg" alt="Mouse Logitech G305">
       <h2>Logitech G305 LIGHTSPEED</h2>
       <ul>
         <li>⚡ Sem fio ultra rápido (1ms)</li>
         <li>🎯 Sensor HERO com 12.000 DPI</li>
-        <li>🔋 Bateria até 250h (pilha AA)</li>
+        <li>🔋 Bateria até 250h</li>
         <li>🖱️ 6 botões programáveis</li>
         <li>🛠️ App Logitech G HUB</li>
       </ul>
