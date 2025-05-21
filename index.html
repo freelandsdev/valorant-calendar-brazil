@@ -8,172 +8,189 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
 
-<style>
-  body {
-    margin: 0;
-    background-color: #0f1923;
-    font-family: 'Rajdhani', sans-serif;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow: hidden;
-  }
+  <style>
+    body {
+      margin: 0;
+      background-color: #0f1923;
+      font-family: 'Rajdhani', sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
 
-  .container {
-    display: flex;
-    gap: 3rem;
-    padding: 2rem;
-    max-width: 1200px;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-  }
+    .container {
+      display: flex;
+      gap: 3rem;
+      padding: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap; /* quebra linha para mobile */
+    }
 
-  .image-section img {
-    width: 330px;
-    height: 548px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-  }
+    .image-section img {
+      width: 330px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
 
-  .middle-section {
-    text-align: center;
-    max-width: 400px;
-  }
+    .middle-section {
+      text-align: center;
+      max-width: 400px;
+    }
 
-  .middle-section h1 {
-    font-size: 2rem;
-    color: #ff4655;
-    margin-bottom: 1rem;
-  }
+    .middle-section h1 {
+      font-size: 2rem;
+      color: #ff4655;
+      margin-bottom: 1rem;
+    }
 
-  .middle-section p {
-    font-size: 1.1rem;
-    color: #ccc;
-  }
+    .middle-section p {
+      font-size: 1.1rem;
+      color: #ccc;
+    }
 
-  .botao-agenda {
-    background-color: #ff4655;
-    color: #fff;
-    font-size: 1.2rem;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 2rem;
-    transition: background 0.3s;
-    text-decoration: none;
-    display: inline-block;
-  }
+    .botao-agenda {
+      background-color: #ff4655;
+      color: #fff;
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 2rem;
+      transition: background 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
 
-  .botao-agenda:hover {
-    background-color: #e03b49;
-  }
+    .botao-agenda:hover {
+      background-color: #e03b49;
+    }
 
-  .mouse-card {
-    background-image: url('https://i.ibb.co/BVvczV1x/Chat-GPT-Image-19-de-mai-de-2025-11-22-39.png');
-    background-size: cover;
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    padding: 1.5rem;
-    border-radius: 8px;
-    width: 280px;
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between; /* distribui espaço entre os elementos */
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  }
+    .mouse-card {
+      background-image: url('https://i.ibb.co/BVvczV1x/Chat-GPT-Image-19-de-mai-de-2025-11-22-39.png');
+      background-size: cover;
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      padding: 1.5rem;
+      border-radius: 8px;
+      width: 280px;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
 
-  .title-mouse-card {
-    margin-top: 1px; /* sobe ou desce o título conforme quiser */
-  }
+    .title-mouse-card {
+      margin-top: 1px;
+    }
 
-  .title-mouse-card h2 {
-    font-size: 1.3rem;
-    color: #ff4655;
-    margin: 0;
-  }
+    .title-mouse-card h2 {
+      font-size: 1.3rem;
+      color: #ff4655;
+      margin: 0;
+    }
 
-  .texto-mouse-card {
-    margin-top: 180px; /* ajusta espaço entre título e lista */
-    margin-bottom: 10px; /* ajusta espaço entre lista e botão */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    .texto-mouse-card {
+      margin-top: 180px;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-  .texto-mouse-card ul {
-    padding: 0;
-    list-style: none;
-    font-size: 0.9rem;
-    color: #eee;
-    text-align: center;
-    margin: 0;
-    width: 100%;
-    max-width: 240px;
-  }
+    .texto-mouse-card ul {
+      padding: 0;
+      list-style: none;
+      font-size: 0.9rem;
+      color: #eee;
+      text-align: center;
+      margin: 0;
+      width: 100%;
+      max-width: 240px;
+    }
 
-  .texto-mouse-card ul li {
-    background-color: rgba(124, 70, 255, 0.10); /* cor padrão */
-    padding: 0.4rem 0.6rem;
-    border-radius: 4px;
-    margin-bottom: 0.4rem;
-    color: #000;
-    transition: background-color 0.3s ease; /* suaviza a transição */
-  }
+    .texto-mouse-card ul li {
+      background-color: rgba(124, 70, 255, 0.10);
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.4rem;
+      color: #000;
+      transition: background-color 0.3s ease;
+    }
 
-  .texto-mouse-card ul li:hover {
-    background-color: rgba(124, 70, 255, 0.88); /* cor ao passar o mouse */
-  }
+    .texto-mouse-card ul li:hover {
+      background-color: rgba(124, 70, 255, 0.88);
+    }
 
-  .button-mouse-card {
-    transform: translateY(-20px); /* sobe 20px */
-  }
+    .button-mouse-card {
+      transform: translateY(-20px);
+    }
 
-  .button-mouse-card a {
-    background-color: #7c46ff;
-    color: #fff;
-    padding: 0.6rem 1.2rem;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-    animation: pulseColors 4s infinite;
-  }
+    .button-mouse-card a {
+      background-color: #7c46ff;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      animation: pulseColors 4s infinite;
+    }
 
-  @keyframes pulseColors {
-    0% { background-color: #7c46ff; }
-    25% { background-color: #8d46ff; }
-    50% { background-color: #9e46ff; }
-    75% { background-color: #6b46ff; }
-    100% { background-color: #7c46ff; }
-  }
+    @keyframes pulseColors {
+      0% { background-color: #7c46ff; }
+      25% { background-color: #8d46ff; }
+      50% { background-color: #9e46ff; }
+      75% { background-color: #6b46ff; }
+      100% { background-color: #7c46ff; }
+    }
 
-  .button-mouse-card a:hover {
-    background-color: #e03b49;
-  }
-</style>
+    .button-mouse-card a:hover {
+      background-color: #e03b49;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .image-section img {
+        width: 100%;
+        max-width: 330px;
+      }
+      .mouse-card {
+        width: 100%;
+        max-width: 280px;
+      }
+    }
+  </style>
 </head>
 <body>
 
   <div class="container">
 
     <div class="image-section">
-      <img src="https://i.postimg.cc/3RsSGVF0/Chat-GPT-Image-20-de-mai-de-2025-21-20-49.png" alt="Masters Toronto 2025">
+      <img src="https://i.postimg.cc/3RsSGVF0/Chat-GPT-Image-20-de-mai-de-2025-21-20-49.png" alt="Imagem oficial do evento Valorant Masters Toronto 2025" aria-label="Imagem do evento">
     </div>
 
-    <div class="middle-section">
+    <div class="middle-section" aria-label="Seção principal de informações do evento">
       <h1>Champions Tour 2025: Masters Toronto</h1>
       <p>Adicione os jogos ao seu Google Agenda e acompanhe tudo em tempo real.</p>
-      <a class="botao-agenda" href="https://calendar.google.com/calendar/u/1?cid=YTJkMjRkZmQ0ZjkwMmIwMmI4OTkwMzRjNmQzYWI2MWQ4ZDQxZWRhNWMyM2VmOTY2Y2VkYjk2OTgwY2EzODg4M0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank">
+      <a class="botao-agenda" href="https://calendar.google.com/calendar/u/1?cid=YTJkMjRkZmQ0ZjkwMmIwMmI4OTkwMzRjNmQzYWI2MWQ4ZDQxZWRhNWMyM2VmOTY2Y2VkYjk2OTgwY2EzODg4M0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" aria-label="Adicionar ao Google Agenda">
         🗓 Adicionar ao Google Agenda
       </a>
     </div>
 
-    <div class="mouse-card">
+    <div class="mouse-card" aria-label="Seção promocional do mouse Logitech">
       <div class="title-mouse-card">
         <h2>Logitech G305 LIGHTSPEED</h2>
       </div>
@@ -187,7 +204,7 @@
         </ul>
       </div>
       <div class="button-mouse-card">
-        <a href="https://amzn.to/4moJsA3" target="_blank">Ver na Amazon</a>
+        <a href="https://amzn.to/4moJsA3" target="_blank" aria-label="Ver produto na Amazon">Ver na Amazon</a>
       </div>
     </div>
 
