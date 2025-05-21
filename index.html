@@ -21,6 +21,14 @@
       overflow: hidden;
     }
 
+    @media (max-width: 768px) {
+      body {
+        overflow-x: hidden;
+        overflow-y: auto; /* só libera scroll vertical no mobile */
+        align-items: flex-start; /* opcional: evita cortar conteúdo no topo */
+      }
+    }
+
     .container {
       display: flex;
       gap: 3rem;
