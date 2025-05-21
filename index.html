@@ -3,171 +3,195 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calendário Valorant - ACE Stage 2</title>
-
-  <script>
-    if (window.location.hostname === "www.vlrcalendar.online") {
-      window.location.href = "https://vlrcalendar.online";
-    }
-  </script>
+  <title>Calendário Valorant - Masters Toronto 2025</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      background-color: #0f1923;
-      font-family: 'Rajdhani', sans-serif;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      overflow: hidden;
-    }
 
-    .container {
-      display: flex;
-      gap: 3rem;
-      padding: 2rem;
-      max-width: 1200px;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
-    }
+<style>
+  body {
+    margin: 0;
+    background-color: #0f1923;
+    font-family: 'Rajdhani', sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
 
-    .principal {
-      text-align: center;
-      max-width: 600px;
-    }
+  .container {
+    display: flex;
+    gap: 3rem;
+    padding: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
 
-    h1 {
-      font-size: 2.5rem;
-      color: #ff4655;
-      margin-bottom: 1rem;
-    }
+  .image-section img {
+    width: 330px;
+    height: 548px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  }
 
-    p {
-      font-size: 1.1rem;
-      color: #ccc;
-    }
+  .middle-section {
+    text-align: center;
+    max-width: 400px;
+  }
 
-    .botao-agenda {
-      background-color: #ff4655;
-      color: #fff;
-      font-size: 1.2rem;
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 2rem;
-      transition: background 0.3s;
-      text-decoration: none;
-      display: inline-block;
-    }
+  .middle-section h1 {
+    font-size: 2rem;
+    color: #ff4655;
+    margin-bottom: 1rem;
+  }
 
-    .botao-agenda:hover {
-      background-color: #e03b49;
-    }
+  .middle-section p {
+    font-size: 1.1rem;
+    color: #ccc;
+  }
 
-    .evento {
-      margin-top: 2rem;
-      font-size: 1rem;
-    }
+  .botao-agenda {
+    background-color: #ff4655;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 2rem;
+    transition: background 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
 
-    .evento ul {
-      list-style: none;
-      padding: 0;
-      margin: 1rem 0;
-      color: #aaa;
-    }
+  .botao-agenda:hover {
+    background-color: #e03b49;
+  }
 
-    .mouse-card {
-      background-image: url('https://i.ibb.co/BVvczV1x/Chat-GPT-Image-19-de-mai-de-2025-11-22-39.png');
-      background-size: cover;
-      background-position: center bottom;
-      background-repeat: no-repeat;
-      padding: 1.5rem;
-      border-radius: 8px;
-      width: 280px;
-      height: 500px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    }
+  .mouse-card {
+    background-image: url('https://i.ibb.co/BVvczV1x/Chat-GPT-Image-19-de-mai-de-2025-11-22-39.png');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    padding: 1.5rem;
+    border-radius: 8px;
+    width: 280px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* distribui espaço entre os elementos */
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  }
 
-    .mouse-card img {
-      width: 150px;
-      margin-top: -50px;
-      margin-bottom: auto;
-      z-index: 2;
-    }
+  .title-mouse-card {
+    margin-top: 1px; /* sobe ou desce o título conforme quiser */
+  }
 
-    .mouse-card h2 {
-      font-size: 1.3rem;
-      color: #ff4655;
-      margin-bottom: 0.5rem;
-    }
+  .title-mouse-card h2 {
+    font-size: 1.3rem;
+    color: #ff4655;
+    margin: 0;
+  }
 
-    .mouse-card ul {
-      padding: 0;
-      list-style: none;
-      font-size: 0.9rem;
-      color: #eee;
-      text-align: left;
-      margin: 0.5rem 0 1rem;
-      width: 100%;
-      max-width: 240px;
-      z-index: 2;
-    }
+  .texto-mouse-card {
+    margin-top: 180px; /* ajusta espaço entre título e lista */
+    margin-bottom: 10px; /* ajusta espaço entre lista e botão */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .mouse-card a {
-      background-color: #ff4655;
-      color: #fff;
-      padding: 0.6rem 1.2rem;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: bold;
-      z-index: 2;
-    }
+  .texto-mouse-card ul {
+    padding: 0;
+    list-style: none;
+    font-size: 0.9rem;
+    color: #eee;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+    max-width: 240px;
+  }
 
-    .mouse-card a:hover {
-      background-color: #e03b49;
-    }
-  </style>
+  .texto-mouse-card ul li {
+    background-color: rgba(124, 70, 255, 0.10); /* cor padrão */
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.4rem;
+    color: #000;
+    transition: background-color 0.3s ease; /* suaviza a transição */
+  }
+
+  .texto-mouse-card ul li:hover {
+    background-color: rgba(124, 70, 255, 0.88); /* cor ao passar o mouse */
+  }
+
+  .button-mouse-card {
+    transform: translateY(-20px); /* sobe 20px */
+  }
+
+  .button-mouse-card a {
+    background-color: #7c46ff;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    animation: pulseColors 4s infinite;
+  }
+
+  @keyframes pulseColors {
+    0% { background-color: #7c46ff; }
+    25% { background-color: #8d46ff; }
+    50% { background-color: #9e46ff; }
+    75% { background-color: #6b46ff; }
+    100% { background-color: #7c46ff; }
+  }
+
+  .button-mouse-card a:hover {
+    background-color: #e03b49;
+  }
+</style>
 </head>
 <body>
+
   <div class="container">
-    <div class="principal">
+
+    <div class="image-section">
+      <img src="https://i.postimg.cc/3RsSGVF0/Chat-GPT-Image-20-de-mai-de-2025-21-20-49.png" alt="Masters Toronto 2025">
+    </div>
+
+    <div class="middle-section">
       <h1>Champions Tour 2025: Masters Toronto</h1>
       <p>Adicione os jogos ao seu Google Agenda e acompanhe tudo em tempo real.</p>
-      <a class="botao-agenda" href="https://calendar.google.com/calendar/u/0?cid=SEU_CALENDAR_ID_AQUI" target="_blank">
+      <a class="botao-agenda" href="https://calendar.google.com/calendar/u/1?cid=YTJkMjRkZmQ0ZjkwMmIwMmI4OTkwMzRjNmQzYWI2MWQ4ZDQxZWRhNWMyM2VmOTY2Y2VkYjk2OTgwY2EzODg4M0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank">
         🗓 Adicionar ao Google Agenda
       </a>
-      <section class="evento">
-        <h2>📍 Detalhes do Evento</h2>
-        <ul>
-          <li><strong>Datas:</strong> 7 a 22 de Junho de 2025</li>
-          <li><strong>Local:</strong> Encare Arena – Toronto, Canadá 🇨🇦</li>
-          <li><strong>Premiação:</strong> $1.000.000 USD</li>
-          <li><strong>Fase Atual:</strong> Swiss Stage</li>
-        </ul>
-      </section>
     </div>
 
     <div class="mouse-card">
-      <h2>Logitech G305 LIGHTSPEED</h2>
-      <ul>
-        <li>⚡ Sem fio ultra rápido (1ms)</li>
-        <li>🎯 Sensor HERO com 12.000 DPI</li>
-        <li>🔋 Bateria até 250h</li>
-        <li>🖱️ 6 botões programáveis</li>
-        <li>🛠️ App Logitech G HUB</li>
-      </ul>
-      <a href="https://amzn.to/4moJsA3" target="_blank">Ver na Amazon</a>
+      <div class="title-mouse-card">
+        <h2>Logitech G305 LIGHTSPEED</h2>
+      </div>
+      <div class="texto-mouse-card">
+        <ul>
+          <li>⚡ Sem fio ultra rápido (1ms)</li>
+          <li>🎯 Sensor HERO com 12.000 DPI</li>
+          <li>🔋 Bateria até 250h</li>
+          <li>🖱️ 6 botões programáveis</li>
+          <li>🛠️ App Logitech G HUB</li>
+        </ul>
+      </div>
+      <div class="button-mouse-card">
+        <a href="https://amzn.to/4moJsA3" target="_blank">Ver na Amazon</a>
+      </div>
     </div>
+
   </div>
+
 </body>
 </html>

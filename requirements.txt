@@ -1,0 +1,9 @@
+google-api-python-client==2.169.0
+google-auth==2.35.0
+google-auth-oauthlib==1.2.2
+pytz==2025.1
+requests==2.32.3
+beautifulsoup4==4.13.4
+ics==0.7.2
+python-dateutil==2.9.0.post0
+python-dotenv==1.1.0
