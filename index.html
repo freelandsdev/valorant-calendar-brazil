@@ -3,10 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calendário Valorant - Masters Toronto 2025</title>
+  <meta name="description" content="Adicione os jogos do VCT 2026: Americas Kickoff ao seu Google Agenda e acompanhe tudo em tempo real." />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Calendário Valorant - VCT 2026: Americas Kickoff" />
+  <meta property="og:description" content="Adicione os jogos do VCT 2026: Americas Kickoff ao seu Google Agenda e acompanhe tudo em tempo real." />
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Calendário Valorant - VCT 2026: Americas Kickoff" />
+  <meta name="twitter:description" content="Adicione os jogos do VCT 2026: Americas Kickoff ao seu Google Agenda e acompanhe tudo em tempo real." />
+  
+  <title>Calendário Valorant - VCT 2026: Americas Kickoff</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+    
+    // Tracking de cliques no botão de adicionar ao calendário
+    document.addEventListener('DOMContentLoaded', function() {
+      const botaoAgenda = document.querySelector('.botao-agenda');
+      if (botaoAgenda) {
+        botaoAgenda.addEventListener('click', function() {
+          gtag('event', 'click', {
+            'event_category': 'Calendário',
+            'event_label': 'Adicionar ao Google Agenda'
+          });
+        });
+      }
+      
+      // Tracking de cliques no link da Amazon
+      const linkAmazon = document.querySelector('.button-mouse-card a');
+      if (linkAmazon) {
+        linkAmazon.addEventListener('click', function() {
+          gtag('event', 'click', {
+            'event_category': 'Afiliado',
+            'event_label': 'Link Amazon - Mouse Logitech'
+          });
+        });
+      }
+    });
+  </script>
 
   <style>
     body {
@@ -187,18 +233,18 @@
   <div class="container">
 
     <div class="image-section">
-      <img src="https://i.postimg.cc/3RsSGVF0/Chat-GPT-Image-20-de-mai-de-2025-21-20-49.png" alt="Imagem oficial do evento Valorant Masters Toronto 2025" aria-label="Imagem do evento">
+      <img src="https://i.postimg.cc/3RsSGVF0/Chat-GPT-Image-20-de-mai-de-2025-21-20-49.png" alt="Imagem oficial do evento VCT 2026: Americas Kickoff" loading="lazy">
     </div>
 
-    <div class="middle-section" aria-label="Seção principal de informações do evento">
-      <h1>Champions Tour 2025: Masters Toronto</h1>
+    <div class="middle-section">
+      <h1>VCT 2026: Americas Kickoff</h1>
       <p>Adicione os jogos ao seu Google Agenda e acompanhe tudo em tempo real.</p>
-      <a class="botao-agenda" href="https://calendar.google.com/calendar/u/1?cid=YTJkMjRkZmQ0ZjkwMmIwMmI4OTkwMzRjNmQzYWI2MWQ4ZDQxZWRhNWMyM2VmOTY2Y2VkYjk2OTgwY2EzODg4M0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" aria-label="Adicionar ao Google Agenda">
+      <a class="botao-agenda" href="https://calendar.google.com/calendar/u/0?cid=41a59355ff2ad6a9670edda2cdb0ad68c129f4bbf487a10ba13543d01a574779%40group.calendar.google.com" target="_blank" rel="noopener noreferrer" aria-label="Adicionar ao Google Agenda">
         🗓 Adicionar ao Google Agenda
       </a>
     </div>
 
-    <div class="mouse-card" aria-label="Seção promocional do mouse Logitech">
+    <div class="mouse-card">
       <div class="title-mouse-card">
         <h2>Logitech G305 LIGHTSPEED</h2>
       </div>
@@ -212,7 +258,7 @@
         </ul>
       </div>
       <div class="button-mouse-card">
-        <a href="https://amzn.to/4moJsA3" target="_blank" aria-label="Ver produto na Amazon">Ver na Amazon</a>
+        <a href="https://amzn.to/4moJsA3" target="_blank" rel="noopener noreferrer" aria-label="Ver produto na Amazon">Ver na Amazon</a>
       </div>
     </div>
 

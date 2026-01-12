@@ -16,7 +16,7 @@ calendar_id = CALENDAR_ID
 
 
 def criar_ou_atualizar_evento(jogo):
-    title = f"Masters Toronto: {jogo['teams']}"
+    title = f"VCT 2026: Americas Kickoff - {jogo['teams']}"
     description = f"{jogo['stage']} - {jogo['evento']}\n\n🔗 {jogo['url']}"
     start_time = jogo['inicio']
     end_time = jogo['fim'] if jogo['fim'] else start_time + timedelta(hours=2)

@@ -2,96 +2,149 @@ import os
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
-from dateutil import parser
 import pytz
 import random
+import time
 
 from settings import CALENDAR_ID
 from update_calendar import criar_ou_atualizar_evento
 
 BASE_URL = "https://www.vlr.gg"
-TARGET_EVENT_NAME = "Champions Tour 2025: Masters Toronto"
-END_DATE = datetime.strptime("Jun 23, 2025", "%b %d, %Y")
+EVENT_URL = f"{BASE_URL}/event/2682/vct-2026-americas-kickoff"
+TARGET_EVENT_NAME = "VCT 2026: Americas Kickoff"
+END_DATE = datetime.strptime("Feb 16, 2026", "%b %d, %Y")
 timezone = pytz.timezone("America/Sao_Paulo")
+timezone_utc = pytz.UTC
 emojis = ["🎯", "🔥", "💥", "🎮", "🚩", "✨", "🏆", "🧨"]
+
+
+def get_headers():
+    """Retorna headers realistas para simular um navegador real"""
+    return {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+        "Accept-Encoding": "gzip, deflate, br",
+        "DNT": "1",
+        "Connection": "keep-alive",
+        "Upgrade-Insecure-Requests": "1",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "Sec-Fetch-User": "?1",
+        "Cache-Control": "max-age=0",
+    }
 
 
 def buscar_jogos():
     jogos = []
-    for page in range(1, 10):
-        print(f"\n🔍 Buscando página {page}...")
-        url = f"{BASE_URL}/matches/?page={page}"
-        res = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
+    print(f"\n🔍 Buscando jogos na página do evento...")
+    print(f"URL: {EVENT_URL}")
+    
+    # Usar sessão para manter conexão e headers consistentes
+    session = requests.Session()
+    session.headers.update(get_headers())
+    
+    try:
+        # Pequeno delay aleatório para parecer mais humano (0.5 a 2 segundos)
+        delay = random.uniform(0.5, 2.0)
+        time.sleep(delay)
+        
+        res = session.get(EVENT_URL, timeout=30)
+        res.raise_for_status()  # Levanta exceção se houver erro HTTP
+        
         soup = BeautifulSoup(res.text, "html.parser")
-        blocos = soup.select(".wf-label.mod-large, .match-item")
-
-        data_atual = None
-        for bloco in blocos:
-            classes = bloco.get("class", [])
-
-            # Dentro do for onde trata datas:
-            if "wf-label" in classes and "mod-large" in classes:
-                data_text = bloco.get_text(strip=True).replace("Today", "").replace("Yesterday", "").strip()
-                try:
-                    data_atual = parser.parse(data_text)
-                except Exception as e:
-                    print(f"Data inválida: {data_text}")
-
-                    data_atual = None
-
-            # Jogo
-            elif "match-item" in classes:
-                if not data_atual or data_atual > END_DATE:
-                    return jogos
-
-                event_name_el = bloco.select_one(".match-item-event")
-                if not event_name_el or TARGET_EVENT_NAME not in event_name_el.text:
-                    continue
-
-                link_el = bloco.get("href", "")
-                time_el = bloco.select_one(".match-item-time")
-                stage_el = bloco.select_one(".match-item-event-series")
-                teams = bloco.select(".match-item-vs-team-name .text-of")
-
-                if not (time_el and stage_el and len(teams) >= 2):
-                    continue
-
-                team1 = teams[0].get_text(strip=True)
-                team2 = teams[1].get_text(strip=True)
-                hour_str = time_el.get_text(strip=True)
-
-                match_url = f"{BASE_URL}{link_el}"
-                emoji = random.choice(emojis)
-
-                try:
-                    if "TBD" in hour_str or hour_str.strip() == "":
-                        jogos.append({
-                            "inicio": timezone.localize(datetime.combine(data_atual.date(), datetime.min.time())),
-                            "fim": None,
-                            "teams": f"{team1} vs {team2}",
-                            "stage": stage_el.get_text(strip=True),
-                            "evento": TARGET_EVENT_NAME,
-                            "indefinido": True,
-                            "url": match_url,
-                            "emoji": emoji
-                        })
-                    else:
-                        match_time = datetime.strptime(hour_str, "%I:%M %p").time()
-                        start = timezone.localize(datetime.combine(data_atual.date(), match_time))
-                        end = start + timedelta(hours=2)
-
-                        jogos.append({
-                            "inicio": start,
-                            "fim": end,
-                            "teams": f"{team1} vs {team2}",
-                            "stage": stage_el.get_text(strip=True),
-                            "evento": TARGET_EVENT_NAME,
-                            "indefinido": False,
-                            "url": match_url,
-                            "emoji": emoji
-                        })
-                except Exception as error:
-                    print(f"Erro ao processar jogo: {error}")
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Erro ao fazer requisição: {e}")
+        return jogos
+    
+    # Buscar todos os bracket-items (partidas)
+    bracket_items = soup.select(".bracket-item")
+    
+    print(f"📊 Encontrados {len(bracket_items)} itens no bracket\n")
+    
+    for item in bracket_items:
+        try:
+            # Extrair link da partida
+            href = item.get("href", "")
+            if not href:
+                continue
+            match_url = f"{BASE_URL}{href}"
+            
+            # Extrair times
+            team_elements = item.select(".bracket-item-team")
+            if len(team_elements) < 2:
+                continue
+                
+            team1_el = team_elements[0].select_one(".bracket-item-team-name span")
+            team2_el = team_elements[1].select_one(".bracket-item-team-name span")
+            
+            # Extrair nomes dos times (pode ser vazio se TBD)
+            team1 = team1_el.get_text(strip=True) if team1_el else ""
+            team2 = team2_el.get_text(strip=True) if team2_el else ""
+            
+            # Se algum time não estiver definido, usar "A DEFINIR"
+            if not team1:
+                team1 = "A DEFINIR"
+            if not team2:
+                team2 = "A DEFINIR"
+            
+            teams_str = f"{team1} vs {team2}"
+            
+            # Extrair timestamp UTC
+            status_el = item.select_one(".bracket-item-status.moment-tz-convert")
+            if not status_el:
+                continue
+                
+            utc_timestamp = status_el.get("data-utc-ts")
+            if not utc_timestamp:
+                continue
+            
+            # Converter timestamp UTC para datetime
+            try:
+                utc_timestamp_int = int(utc_timestamp)
+                start_utc = datetime.fromtimestamp(utc_timestamp_int, tz=timezone_utc)
+                start_local = start_utc.astimezone(timezone)
+            except (ValueError, OSError) as e:
+                print(f"⚠️  Erro ao converter timestamp {utc_timestamp}: {e}")
+                continue
+            
+            # Verificar se está dentro do período do evento
+            if start_local.date() > END_DATE.date():
+                continue
+            
+            # Extrair stage/round (procurar no bracket-col-label da coluna pai)
+            bracket_col = item.find_parent(class_="bracket-col")
+            stage = "Main Event"
+            if bracket_col:
+                label_el = bracket_col.select_one(".bracket-col-label")
+                if label_el:
+                    stage_text = label_el.get_text(strip=True)
+                    stage = f"Main Event–{stage_text}"
+            
+            # Determinar se o horário está indefinido (se algum time for A DEFINIR, considerar indefinido)
+            indefinido = (team1 == "A DEFINIR" or team2 == "A DEFINIR")
+            
+            # Calcular fim do evento (2 horas após início)
+            end_local = start_local + timedelta(hours=2)
+            
+            emoji = random.choice(emojis)
+            
+            jogos.append({
+                "inicio": start_local,
+                "fim": end_local,
+                "teams": teams_str,
+                "stage": stage,
+                "evento": TARGET_EVENT_NAME,
+                "indefinido": indefinido,
+                "url": match_url,
+                "emoji": emoji
+            })
+            
+        except Exception as error:
+            print(f"⚠️  Erro ao processar partida: {error}")
+            continue
+    
     return jogos
 
 
@@ -105,4 +158,3 @@ for j in jogos:
     print(f"{j['emoji']} {data_formatada} | {status} | {j['teams']} - {j['stage']}")
     print(f"{j['url']}\n")
     criar_ou_atualizar_evento(j)
-    break

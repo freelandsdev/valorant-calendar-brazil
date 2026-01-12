@@ -18,4 +18,3 @@ GOOGLE_CREDENTIALS_DICT = {
     "client_x509_cert_url": os.getenv("GOOGLE_CLIENT_X509_CERT_URL"),
     "universe_domain": os.getenv("GOOGLE_UNIVERSE_DOMAIN")
 }
-print("GOOGLE_CREDENTIALS_DICT:", GOOGLE_CREDENTIALS_DICT)
