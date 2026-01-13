@@ -7,7 +7,7 @@ import random
 import time
 
 from settings import CALENDAR_ID
-from update_calendar import criar_ou_atualizar_evento
+from update_calendar import criar_ou_atualizar_evento, validar_credenciais
 
 BASE_URL = "https://www.vlr.gg"
 EVENT_URL = f"{BASE_URL}/event/2682/vct-2026-americas-kickoff"
@@ -149,12 +149,41 @@ def buscar_jogos():
 
 
 # Execução principal
+print("=" * 60)
+print("🔐 VALIDANDO CREDENCIAIS DO GOOGLE CALENDAR")
+print("=" * 60)
+
+if not validar_credenciais():
+    print("\n❌ Validação falhou. Abortando para evitar buscas desnecessárias.")
+    print("   Corrija as permissões antes de tentar novamente.")
+    exit(1)
+
+print("\n" + "=" * 60)
+print("🌐 BUSCANDO JOGOS NO VLR.GG")
+print("=" * 60)
+
 jogos = buscar_jogos()
 
-print(f"\n Total de jogos encontrados: {len(jogos)}\n")
+if not jogos:
+    print("\n⚠️  Nenhum jogo encontrado. Nada para atualizar.")
+    exit(0)
+
+print(f"\n📊 Total de jogos encontrados: {len(jogos)}\n")
+print("=" * 60)
+print("📅 CRIANDO/ATUALIZANDO EVENTOS NO CALENDÁRIO")
+print("=" * 60)
+
 for j in jogos:
     data_formatada = j["inicio"].strftime('%d/%m') if not j["indefinido"] else j["inicio"].strftime('%d/%m')
     status = "Horário a confirmar" if j["indefinido"] else j["inicio"].strftime('%I:%M %p')
-    print(f"{j['emoji']} {data_formatada} | {status} | {j['teams']} - {j['stage']}")
-    print(f"{j['url']}\n")
-    criar_ou_atualizar_evento(j)
+    print(f"\n{j['emoji']} {data_formatada} | {status} | {j['teams']} - {j['stage']}")
+    print(f"   {j['url']}")
+    try:
+        criar_ou_atualizar_evento(j)
+    except Exception as e:
+        print(f"   ❌ Erro ao processar: {e}")
+        continue
+
+print("\n" + "=" * 60)
+print("✅ PROCESSAMENTO CONCLUÍDO")
+print("=" * 60)
