@@ -55,13 +55,13 @@ def buscar_jogos():
         
         soup = BeautifulSoup(res.text, "html.parser")
     except requests.exceptions.RequestException as e:
-        print(f"❌ Erro ao fazer requisição: {e}")
+        print(f"Erro ao fazer requisição: {e}")
         return jogos
     
     # Buscar todos os bracket-items (partidas)
     bracket_items = soup.select(".bracket-item")
     
-    print(f"📊 Encontrados {len(bracket_items)} itens no bracket\n")
+    print(f"Encontrados {len(bracket_items)} itens no bracket\n")
     
     for item in bracket_items:
         try:
@@ -106,7 +106,7 @@ def buscar_jogos():
                 start_utc = datetime.fromtimestamp(utc_timestamp_int, tz=timezone_utc)
                 start_local = start_utc.astimezone(timezone)
             except (ValueError, OSError) as e:
-                print(f"⚠️  Erro ao converter timestamp {utc_timestamp}: {e}")
+                print(f"Erro ao converter timestamp {utc_timestamp}: {e}")
                 continue
             
             # Verificar se está dentro do período do evento
